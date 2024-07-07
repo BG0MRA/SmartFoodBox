@@ -1,6 +1,23 @@
 # Compiled class file
 *.class
 
+# Intellij
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Gradle specific files
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+**/build/
+
+# Build directories
+target/
+bin/
+out/
+
 # Log file
 *.log
 

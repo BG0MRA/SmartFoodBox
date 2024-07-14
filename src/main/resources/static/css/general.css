@@ -164,7 +164,7 @@ body {
   display: block;
   font-size: 1.6rem;
   font-weight: 500;
-  color: #cf711f;
+  color: #52AE30;
   text-transform: uppercase;
   margin-bottom: 1.6rem;
   letter-spacing: 0.75px;
@@ -193,13 +193,13 @@ body {
 
 .btn--full:link,
 .btn--full:visited {
-  background-color: #e67e22;
+  background-color: #74BE59;
   color: #fff;
 }
 
 .btn--full:hover,
 .btn--full:active {
-  background-color: #cf711f;
+  background-color: #52AE30;
 }
 
 .btn--outline:link,
@@ -210,30 +210,30 @@ body {
 
 .btn--outline:hover,
 .btn--outline:active {
-  background-color: #fdf2e9;
+  background-color: #E0E4EE;
 
   /* border: 3px solid #fff; */
 
   /* Trick to add border inside */
-  box-shadow: inset 0 0 0 3px #fff;
+  box-shadow: inset 0 0 0 3px #E0E4EE;
 }
 
 .btn--form {
   background-color: #45260a;
-  color: #fdf2e9;
+  color: #E0E4EE;
   align-self: end;
   padding: 1.2rem;
 }
 
 .btn--form:hover {
-  background-color: #fff;
+  background-color: #E0E4EE;
   color: #555;
 }
 
 .link:link,
 .link:visited {
   display: inline-block;
-  color: #e67e22;
+  color: #74BE59;
   text-decoration: none;
   border-bottom: 1px solid currentColor;
   padding-bottom: 2px;
@@ -242,7 +242,7 @@ body {
 
 .link:hover,
 .link:active {
-  color: #cf711f;
+  color: #52AE30;
   border-bottom: 1px solid transparent;
 }
 
@@ -264,14 +264,14 @@ body {
 .list-icon {
   width: 3rem;
   height: 3rem;
-  color: #e67e22;
+  color: #74BE59;
 }
 
 *:focus {
   outline: none;
   /* outline: 4px dotted #e67e22; */
   /* outline-offset: 8px; */
-  box-shadow: 0 0 0 0.8rem rgba(230, 125, 34, 0.5);
+  box-shadow: 0 0 0 0.8rem #E0E4EE;
 }
 
 /* HELPER/SETTINGS CLASSES */

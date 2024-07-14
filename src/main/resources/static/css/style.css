@@ -152,7 +152,7 @@
 }
 
 .delivered-text span {
-  color: #cf711f;
+  color: #52AE30;
   font-weight: 700;
 }
 
@@ -238,7 +238,7 @@
 .step-img-box::after {
   width: 45%;
   padding-bottom: 45%;
-  background-color: #fae5d3;
+  background-color: #E0E4EE;
   z-index: -1;
 }
 
@@ -321,7 +321,7 @@
 .meal-icon {
   height: 2.4rem;
   width: 2.4rem;
-  color: #e67e22;
+  color: #52AE30;
 }
 
 .meal-img {
@@ -441,11 +441,11 @@
 }
 
 .plan-name {
-  color: #cf711f;
+  color: #52AE30;
   font-weight: 600;
   font-size: 2rem;
   text-transform: uppercase;
-  letter-spacing: 0.75;
+  letter-spacing: 1;
   margin-bottom: 3.2rem;
 }
 
@@ -480,7 +480,7 @@
 }
 
 .feature-icon {
-  color: #e67e22;
+  color: #52AE30;
   height: 3.2rem;
   width: 3.2rem;
   background-color: #E0E4EE;
@@ -521,7 +521,7 @@
   box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.15);
   border-radius: 11px;
 
-  background-image: linear-gradient(to right bottom, #eb984e, #e67e22);
+  background-image: linear-gradient(to right bottom, #74BE59, #52AE30);
   overflow: hidden;
 }
 
@@ -545,8 +545,8 @@
 .cta-img-box {
   background-image: linear-gradient(
       to right bottom,
-      rgba(235, 151, 78, 0.35),
-      rgba(230, 125, 34, 0.35)
+      rgba(224, 228, 238, 0.3),
+      rgba(224, 228, 238, 0.3)
     ),
     url("../img/eating.jpg");
   background-size: cover;

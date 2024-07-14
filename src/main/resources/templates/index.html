@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<body>
+<header th:replace="fragments/header :: header"></header>
+<main>
+  <section th:replace="sections/hero :: hero"></section>
+  <section th:replace="sections/featured :: featured"></section>
+  <section th:replace="sections/how :: how"></section>
+  <section th:replace="sections/meals :: meals"></section>
+  <section th:replace="sections/testimonials :: testimonials"></section>
+  <section th:replace="sections/pricing :: pricing"></section>
+  <section th:replace="sections/cta :: cta"></section>
+</main>
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>

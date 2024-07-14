@@ -1,4 +1,4 @@
-package com.smartFoodBox.SmartFoodBox.controller;
+package com.smartFoodBox.SmartFoodBox.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

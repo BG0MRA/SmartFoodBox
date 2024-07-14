@@ -1,3 +1,10 @@
+/******************************/
+/* Main Colours of the theme */
+/*grey #E0E4EE */
+/*main green #52AE30 */
+/*light green #74BE59 */
+/******************************/
+
 /**************************/
 /* HEADER */
 /**************************/
@@ -238,7 +245,7 @@
 .step-img-box::after {
   width: 45%;
   padding-bottom: 45%;
-  background-color: #E0E4EE;
+  background-color: #d1d4de;
   z-index: -1;
 }
 

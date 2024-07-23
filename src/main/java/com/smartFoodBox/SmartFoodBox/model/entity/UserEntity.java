@@ -1,6 +1,5 @@
 package com.smartFoodBox.SmartFoodBox.model.entity;
 
-import com.smartFoodBox.SmartFoodBox.model.enums.UserRoleEnum;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -9,14 +8,16 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class UserEntity extends BaseEntity{
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
 
+    @Column(nullable = false)
     private String password;
 
-    @
+    @Column(nullable = false)
     private String firstName;
 
+    @Column(nullable = false)
     private String lastName;
 
     @ManyToMany(
@@ -27,7 +28,7 @@ public class UserEntity extends BaseEntity{
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    private List<UserRoleEnum> roles = new ArrayList<>();
+    private List<UserRoleEntity> roles = new ArrayList<>();
 
     public String getEmail() {
         return email;
@@ -65,13 +66,12 @@ public class UserEntity extends BaseEntity{
         return this;
     }
 
-    public List<UserRoleEnum> getRoles() {
+    public List<UserRoleEntity> getRoles() {
         return roles;
     }
 
-    public UserEntity setRoles(List<UserRoleEnum> roles) {
+    public void setRoles(List<UserRoleEntity> roles) {
         this.roles = roles;
-        return this;
     }
 
     @Override

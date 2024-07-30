@@ -16,27 +16,27 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(
-                    authorizeRequests -> authorizeRequests
-                            // all static resources to "common locations" (css, images, js) are available to anyone
-                            .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                            // some more resources for all users (login, register page etc.)
-                            .requestMatchers("/").permitAll()
-                            // all other URL-s should be authenticated.
-                            .anyRequest()
-                            .authenticated()
+                        authorizeRequests -> authorizeRequests
+                                // all static resources to "common locations" (css, images, js) are available to anyone
+                                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                                // some more resources for all users (login, register page etc.)
+                                .requestMatchers("/").permitAll()
+                                // all other URL-s should be authenticated.
+                                .anyRequest()
+                                .authenticated()
                 )
                 .formLogin(
-                    formLogin -> formLogin
-                            // Where is our custom login form?
-                            .loginPage("/login")
-                            // what is the name of the username parameter in the Login POST request?
-                            .usernameParameter("email")
-                            // what is the name of the password parameter in the Login POST request?
-                            .passwordParameter("password")
-                            // What will happen if the login is successful
-                            .defaultSuccessUrl("/", true)
-                            // What will happen if the login fails
-                            .failureForwardUrl("/users/login-error")
+                        formLogin -> formLogin
+                                // Where is our custom login form?
+                                .loginPage("/login")
+                                // what is the name of the username parameter in the Login POST request?
+                                .usernameParameter("email")
+                                // what is the name of the password parameter in the Login POST request?
+                                .passwordParameter("password")
+                                // What will happen if the login is successful
+                                .defaultSuccessUrl("/", true)
+                                // What will happen if the login fails
+                                .failureForwardUrl("/users/login-error")
                 )
                 .logout(
                         logout ->
@@ -47,6 +47,11 @@ public class SecurityConfig {
                                         .logoutSuccessUrl("/")
                                         // invalidate the session after logout.
                                         .invalidateHttpSession(true)
+                )
+                .rememberMe(rememberMe -> rememberMe
+                        .key("uniqueAndSecret")
+                        .tokenValiditySeconds(86400) // Set validity to 1 day (86400 seconds)
+                        .rememberMeParameter("remember-me")
                 )
                 .build();
     }

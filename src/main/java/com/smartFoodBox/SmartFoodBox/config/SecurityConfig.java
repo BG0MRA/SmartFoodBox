@@ -1,6 +1,7 @@
 package com.smartFoodBox.SmartFoodBox.config;
 
-import jakarta.servlet.http.HttpSession;
+import com.smartFoodBox.SmartFoodBox.repository.UserRepository;
+import com.smartFoodBox.SmartFoodBox.service.impl.SmartFoodBoxUserDetailsService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -48,6 +49,11 @@ public class SecurityConfig {
                                         .invalidateHttpSession(true)
                 )
                 .build();
+    }
+
+    @Bean
+    public SmartFoodBoxUserDetailsService userDetailsService(UserRepository userRepository) {
+        return new SmartFoodBoxUserDetailsService(userRepository);
     }
 
     @Bean

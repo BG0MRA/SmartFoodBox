@@ -12,15 +12,14 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfig {
-
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-                .authorizeHttpRequests(
-                        authorizeRequests -> authorizeRequests
+                .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                                 // all static resources to "common locations" (css, images, js) are available to anyone
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                 // some more resources for all users (login, register page etc.)
-                                .requestMatchers("/").permitAll()
+                                .requestMatchers("/", "/users/register", "/users/login", "/css/**", "/js/**").permitAll()
                                 // all other URL-s should be authenticated.
                                 .anyRequest()
                                 .authenticated()
@@ -28,7 +27,7 @@ public class SecurityConfig {
                 .formLogin(
                         formLogin -> formLogin
                                 // Where is our custom login form?
-                                .loginPage("/login")
+                                .loginPage("/users/login")
                                 // what is the name of the username parameter in the Login POST request?
                                 .usernameParameter("email")
                                 // what is the name of the password parameter in the Login POST request?

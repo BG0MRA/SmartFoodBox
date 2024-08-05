@@ -64,16 +64,6 @@
     background-color: #52AE30;
 }
 
-.section-register {
-    background-color: #E0E4EE;
-    padding: 4.8rem 0 9.6rem 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-}
-
 /* Language Selector Styles */
 .language-selector {
     display: inline-block;
@@ -82,7 +72,6 @@
 }
 
 .language-selector select {
-    padding: 0.8rem 1.6rem;
     font-size: 1.6rem;
     font-weight: 500;
     border: 1px solid #ccc;
@@ -92,7 +81,8 @@
     appearance: none;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    padding-right: 2.5rem; /* Add space for the arrow */
+    /* Add space for the arrow */
+    padding: 0.8rem 2.5rem 0.8rem 1.6rem;
 }
 
 .language-selector select:hover,
@@ -733,14 +723,14 @@
 }
 
 /**************************/
-/* REGISTER SECTION */
+/* REGISTER and LOGIN SECTION */
 /**************************/
 .section-register {
     background-color: #E0E4EE;
-    padding: 4.8rem 0;
+    padding: 1rem 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     min-height: 100vh; /* Ensures the section fills the entire viewport height */
 }
@@ -798,11 +788,15 @@
     background-color: #3e8e1d;
 }
 
-.error {
+.error, .info {
     color: #e74c3c;
     font-size: 1.4rem;
     margin-top: -1.2rem;
     margin-bottom: 1.2rem;
+}
+
+.info {
+    color: green;
 }
 
 /* Center the form in the middle of the page */
@@ -811,4 +805,17 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+}
+.form .remember-me-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2.4rem; /* Adjust this value to add more space between the checkbox and the button */
+}
+
+.form .remember-me-container input[type="checkbox"] {
+    margin-right: 1rem; /* Adjust this value for spacing between the checkbox and the label */
+}
+
+.form .remember-me-label {
+    margin-bottom: 0 !important;
 }

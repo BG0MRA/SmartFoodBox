@@ -36,3 +36,9 @@ logging:
       springframework.security: DEBUG
 server:
   port: 8080
+mvc:
+  locale: en
+  locale-resolver: cookie
+  messages:
+    basename: classpath:i18n/messages
+    fallback-to-system-locale: false

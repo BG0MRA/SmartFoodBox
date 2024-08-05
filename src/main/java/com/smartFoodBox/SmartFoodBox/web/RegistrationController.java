@@ -31,16 +31,19 @@ public class RegistrationController {
     }
 
     @PostMapping("/register")
-    public String register(@Valid UserRegistrationDTO registerDTO, BindingResult bindingResult, Model model) {
+    public String register(@Valid @ModelAttribute("registerDTO") UserRegistrationDTO registerDTO,
+                           BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
-            registerDTO.setPassword(null);
+//            registerDTO.setPassword(null);
+//            registerDTO.setConfirmPassword(null);
             return "users/register";
         }
 
         if (userService.emailExists(registerDTO.getEmail())) {
             model.addAttribute("emailExistsError", true);
             registerDTO.setPassword(null);
+            registerDTO.setConfirmPassword(null);
             return "users/register";
         }
         userService.registerUser(registerDTO);

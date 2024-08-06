@@ -804,7 +804,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
 }
 .form .remember-me-container {
     display: flex;

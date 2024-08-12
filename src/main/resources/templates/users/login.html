@@ -8,7 +8,7 @@
 <header th:replace="~{fragments/header :: header}"></header>
 <div class="section-register">
     <h1 class="heading-primary center-text" th:text="#{login.title}">Login</h1>
-    <form th:action="@{/login}" method="post" class="form grid--2-cols">
+    <form th:action="@{/login}" method="post">
         <div class="full-width">
             <label for="email" th:text="#{login.email}">Email:</label>
             <input type="email" id="email" name="email" />

@@ -35,15 +35,14 @@ public class SecurityConfig {
                                 // What will happen if the login is successful
                                 .defaultSuccessUrl("/", true)
                                 // What will happen if the login fails
-                                .failureForwardUrl("/users/login?error=true")
+                                .failureUrl("/users/login?error=true")
                 )
                 .logout(
-                        logout ->
-                                logout
+                        logout -> logout
                                         // what is the logout URL?
                                         .logoutUrl("/users/logout")
                                         // Where to go after successful logout?
-                                        .logoutSuccessUrl("/")
+                                        .logoutSuccessUrl("/users/login?logout=true")
                                         // invalidate the session after logout.
                                         .invalidateHttpSession(true)
                 )

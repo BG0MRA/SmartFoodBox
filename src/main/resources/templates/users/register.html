@@ -8,7 +8,7 @@
 <header th:replace="~{fragments/header :: header}"></header>
 <div class="section-register">
     <h1 class="heading-primary center-text" th:text="#{register.title}">Register</h1>
-    <form th:action="@{/users/register}" th:object="${registerDTO}" method="post" class="form grid--2-cols">
+    <form th:action="@{/users/register}" th:object="${registerDTO}" method="post" class="form">
         <div>
             <label for="firstName" th:text="#{register.firstName}">First Name:</label>
             <input type="text" id="firstName" th:field="*{firstName}" />

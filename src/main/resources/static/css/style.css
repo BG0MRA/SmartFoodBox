@@ -725,7 +725,7 @@
 /**************************/
 /* REGISTER and LOGIN SECTION */
 /**************************/
-.section-register {
+.section-register, .section-login {
     background-color: #E0E4EE;
     padding: 1rem 0;
     display: flex;
@@ -804,6 +804,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
 }
 .form .remember-me-container {
     display: flex;

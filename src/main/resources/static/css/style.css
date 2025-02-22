@@ -110,6 +110,7 @@
     color: #333;
     margin-right: 0.5rem; /* Space between label and select box */
 }
+
 /* DROPDOWN MENU*/
 .dropdown-toggle {
     color: #fff;
@@ -245,7 +246,12 @@
 .section-featured {
     padding: 4.8rem 0 3.2rem 0;
 }
-
+/* Center the form in the middle of the page */
+.container-featured {
+    justify-content: center;
+    align-items: center;
+    min-height: 30vh;
+}
 .heading-featured-in {
     font-size: 1.4rem;
     text-transform: uppercase;
@@ -478,7 +484,7 @@
 }
 
 /**************************/
-/* MEALS SECTION */
+/* PRICING SECTION */
 /**************************/
 
 .section-pricing {
@@ -678,7 +684,7 @@
 /**************************/
 
 .footer {
-    padding: 12.8rem 0;
+    padding: 10rem 0;
     border-top: 1px solid #eee;
 }
 
@@ -816,24 +822,18 @@
     background-color: #3e8e1d;
 }
 
-.error, .info {
+.error {
     color: #e74c3c;
-    font-size: 1.4rem;
-    margin-top: -1.2rem;
-    margin-bottom: 1.2rem;
+    font-size: 3rem;
+    text-align: center;
 }
 
 .info {
     color: green;
+    font-size: 3rem;
+    text-align: center;
 }
 
-/* Center the form in the middle of the page */
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
 .form .remember-me-container {
     display: flex;
     align-items: center;

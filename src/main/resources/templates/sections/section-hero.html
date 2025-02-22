@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <body>
 <div th:fragment="hero">
     <section class="section-hero">
@@ -13,7 +13,9 @@
                     eat healthy again. Tailored to your personal tastes and
                     nutritional needs.
                 </p>
-                <a th:href="@{/register}" class="btn btn--full margin-right-sm">Start eating well</a>
+                <a sec:authorize="!isAuthenticated()" th:href="@{users/register}" class="btn btn--full margin-right-sm">
+                    Start eating well
+                </a>
                 <a th:href="@{/how-it-works}" class="btn btn--outline">Learn more &darr;</a>
                 <div class="delivered-meals">
                     <div class="delivered-imgs">

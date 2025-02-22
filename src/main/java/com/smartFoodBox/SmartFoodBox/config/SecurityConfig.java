@@ -5,12 +5,14 @@ import com.smartFoodBox.SmartFoodBox.service.impl.SmartFoodBoxUserDetailsService
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
+@EnableMethodSecurity
 public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -19,7 +21,8 @@ public class SecurityConfig {
                                 // all static resources to "common locations" (css, images, js) are available to anyone
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                 // some more resources for all users (login, register page etc.)
-                                .requestMatchers("/", "/how-it-works", "/users/register", "/users/login", "/css/**", "/js/**", "/?lang=*").permitAll()
+                                .requestMatchers("/", "/how-it-works", "/css/**", "/js/**", "/?lang=*").permitAll()
+                                .requestMatchers("/users/register", "/users/login").anonymous()
                                 // all other URL-s should be authenticated.
                                 .anyRequest()
                                 .authenticated()

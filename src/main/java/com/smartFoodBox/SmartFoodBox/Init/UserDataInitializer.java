@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.List;
+import java.util.Set;
 
 @Configuration
 public class UserDataInitializer {
@@ -28,15 +28,15 @@ public class UserDataInitializer {
             }
 
             if (userRepository.count() == 0) {
-                UserRoleEntity adminRole = roleRepository.findByRole(UserRoleEnum.ADMIN);
-                UserRoleEntity userRole = roleRepository.findByRole(UserRoleEnum.USER);
+                UserRoleEntity adminRole = roleRepository.findByRole(UserRoleEnum.ADMIN).orElseThrow(() -> new IllegalStateException("Admin role not found"));
+                UserRoleEntity userRole = roleRepository.findByRole(UserRoleEnum.USER).orElseThrow(() -> new IllegalStateException("User role not found"));
 
                 UserEntity admin = new UserEntity();
                 admin.setEmail("admin@example.com")
                         .setFirstName("Admin")
                         .setLastName("User")
                         .setPassword(passwordEncoder.encode("admin"))
-                        .setRoles(List.of(adminRole));
+                        .setRoles(Set.of(adminRole));
                 userRepository.save(admin);
 
                 UserEntity user = new UserEntity();
@@ -44,7 +44,7 @@ public class UserDataInitializer {
                         .setFirstName("Normal")
                         .setLastName("User")
                         .setPassword(passwordEncoder.encode("user"))
-                        .setRoles(List.of(userRole));
+                        .setRoles(Set.of(userRole));
                 userRepository.save(user);
             }
         };

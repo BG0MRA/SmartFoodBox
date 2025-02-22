@@ -6,17 +6,19 @@
     </a>
     <nav class="main-nav">
         <ul class="main-nav-list">
-            <li><a class="main-nav-link" th:href="@{/how-it-works}">How it works</a></li>
-            <li><a class="main-nav-link" th:href="@{/meals}">Meals</a></li>
-            <li><a class="main-nav-link" th:href="@{/testimonials}">Testimonials</a></li>
-            <li><a class="main-nav-link" th:href="@{/pricing}">Pricing</a></li>
+            <li><a class="main-nav-link" th:href="@{/how-it-works}" th:text="#{nav_bar.how-it-works}">How it works</a>
+            </li>
+            <li><a class="main-nav-link" th:href="@{/meals}" th:text="#{nav_bar.meals}">Meals</a></li>
+            <li><a class="main-nav-link" th:href="@{/testimonials}" th:text="#{nav_bar.testimonials}">Testimonials</a>
+            </li>
+            <li><a class="main-nav-link" th:href="@{/pricing}" th:text="#{nav_bar.pricing}">Pricing</a></li>
 
             <!-- Display Login/Register for unauthenticated users -->
             <li sec:authorize="!isAuthenticated()">
-                <a class="main-nav-link nav-cta" th:href="@{/users/login}">Login</a>
+                <a class="main-nav-link nav-cta" th:href="@{/users/login}" th:text="#{nav_bar.login}">Login</a>
             </li>
             <li sec:authorize="!isAuthenticated()">
-                <a class="main-nav-link nav-cta" th:href="@{/users/register}">Register</a>
+                <a class="main-nav-link nav-cta" th:href="@{/users/register}" th:text="#{nav_bar.register}">Register</a>
             </li>
 
             <!-- Display User Dropdown for authenticated users -->
@@ -26,11 +28,11 @@
                     <span sec:authentication="principal.firstName"></span> <!-- Displays the username -->
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                    <li><a class="dropdown-item" th:href="@{/users/profile}">Profile</a></li>
-                    <li><a class="dropdown-item" th:href="@{/users/orders}">Orders</a></li>
+                    <li><a class="dropdown-item" th:href="@{/users/profile}" th:text="#{nav_bar.dropdown.profile}">Profile</a></li>
+                    <li><a class="dropdown-item" th:href="@{/users/orders}" th:text="#{nav_bar.dropdown.orders}">Orders</a></li>
                     <li>
-                        <form th:action="@{/users/logout}" method="post">
-                            <button type="submit" class="dropdown-item">Logout</button>
+                        <form th:action="@{/users/logout}"  method="post">
+                            <button type="submit" class="dropdown-item" th:text="#{nav_bar.dropdown.logout}">Logout</button>
                         </form>
                     </li>
                 </ul>

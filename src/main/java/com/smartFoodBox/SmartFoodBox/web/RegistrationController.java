@@ -20,6 +20,7 @@ public class RegistrationController {
     public RegistrationController(UserService userService) {
         this.userService = userService;
     }
+
     @ModelAttribute("registerDTO")
     public UserRegistrationDTO registerDTO() {
         return new UserRegistrationDTO();
@@ -35,8 +36,8 @@ public class RegistrationController {
                            BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
-//            registerDTO.setPassword(null);
-//            registerDTO.setConfirmPassword(null);
+            registerDTO.setPassword(null);
+            registerDTO.setConfirmPassword(null);
             return "users/register";
         }
 

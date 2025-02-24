@@ -1,5 +1,6 @@
 package com.smartFoodBox.SmartFoodBox.service.impl;
 
+import com.smartFoodBox.SmartFoodBox.model.dto.ProfileDTO;
 import com.smartFoodBox.SmartFoodBox.model.dto.UserRegistrationDTO;
 import com.smartFoodBox.SmartFoodBox.model.entity.UserEntity;
 import com.smartFoodBox.SmartFoodBox.model.entity.UserRoleEntity;
@@ -56,8 +57,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<SmartFoodBoxUserDetails> getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication !=null &&
-        authentication.getPrincipal() instanceof SmartFoodBoxUserDetails smartFoodBoxUserDetails) {
+        if (authentication != null &&
+                authentication.getPrincipal() instanceof SmartFoodBoxUserDetails smartFoodBoxUserDetails) {
             return Optional.of(smartFoodBoxUserDetails);
         }
         return Optional.empty();
@@ -88,6 +89,52 @@ public class UserServiceImpl implements UserService {
             userEntity.getRoles().add(roleEntity);
             userRepository.save(userEntity);
         }
+
+    }
+
+    @Override
+    public Optional<ProfileDTO> getCurrentUserProfile() {
+        return getCurrentUser().map(currentUser -> {
+            UserEntity userEntity = userRepository.findById(currentUser.getId())
+                    .orElseThrow(() -> new IllegalArgumentException("User not found for ID: " + currentUser.getId()));
+
+            ProfileDTO profileDTO = modelMapper.map(userEntity, ProfileDTO.class);
+            return profileDTO;
+        });
+    }
+
+    @Override
+    public void updateCurrentUserProfile(ProfileDTO profileDTO) {
+        getCurrentUser().ifPresent(currentUser -> {
+            UserEntity userEntity = userRepository.findById(currentUser.getId())
+                    .orElseThrow(() -> new IllegalArgumentException("User not found for ID: " + currentUser.getId()));
+
+            // Update basic fields
+            userEntity.setFirstName(profileDTO.getFirstName());
+            userEntity.setLastName(profileDTO.getLastName());
+
+            // If user is allowed to change email (not read-only):
+            // userEntity.setEmail(profileDTO.getEmail());
+
+            if (profileDTO.getNewPassword() != null && !profileDTO.getNewPassword().isBlank()) {
+
+                // Optional: check oldPassword to confirm identity
+                if (!passwordEncoder.matches(profileDTO.getOldPassword(), userEntity.getPassword())) {
+                    throw new IllegalArgumentException("{profile.oldPassword.mismatch}");
+                }
+
+                // Check that newPassword = confirmNewPassword manually or via custom validator
+                if (!profileDTO.getNewPassword().equals(profileDTO.getConfirmNewPassword())) {
+                    throw new IllegalArgumentException("{profile.passwords.notMatching}");
+                }
+
+                // Encrypt and set the new password
+                userEntity.setPassword(passwordEncoder.encode(profileDTO.getNewPassword()));
+            }
+
+            userRepository.save(userEntity);
+        });
+
 
     }
 

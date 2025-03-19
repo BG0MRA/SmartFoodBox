@@ -34,16 +34,16 @@ public class UserDataInitializer {
                 UserEntity admin = new UserEntity();
                 admin.setEmail("admin@example.com")
                         .setFirstName("Admin")
-                        .setLastName("User")
-                        .setPassword(passwordEncoder.encode("admin"))
+                        .setLastName("Admin")
+                        .setPassword(passwordEncoder.encode("admin1234"))
                         .setRoles(Set.of(adminRole));
                 userRepository.save(admin);
 
                 UserEntity user = new UserEntity();
                 user.setEmail("user@example.com")
                         .setFirstName("Normal")
-                        .setLastName("User")
-                        .setPassword(passwordEncoder.encode("user"))
+                        .setLastName("Normal")
+                        .setPassword(passwordEncoder.encode("user1234"))
                         .setRoles(Set.of(userRole));
                 userRepository.save(user);
             }

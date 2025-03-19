@@ -10,11 +10,13 @@ import com.smartFoodBox.SmartFoodBox.repository.UserRepository;
 import com.smartFoodBox.SmartFoodBox.repository.UserRoleRepository;
 import com.smartFoodBox.SmartFoodBox.service.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.context.MessageSource;
 
 import java.util.Optional;
 
@@ -25,15 +27,18 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final UserRoleRepository userRoleRepository;
+    private final MessageSource messageSource;
 
     public UserServiceImpl(ModelMapper modelMapper,
                            PasswordEncoder passwordEncoder,
                            UserRepository userRepository,
-                           UserRoleRepository userRoleRepository) {
+                           UserRoleRepository userRoleRepository,
+                           MessageSource messageSource) {
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
+        this.messageSource = messageSource;
     }
 
     @Override
@@ -109,10 +114,6 @@ public class UserServiceImpl implements UserService {
             UserEntity userEntity = userRepository.findById(currentUser.getId())
                     .orElseThrow(() -> new IllegalArgumentException("User not found for ID: " + currentUser.getId()));
 
-            // Update basic fields
-            userEntity.setFirstName(profileDTO.getFirstName());
-            userEntity.setLastName(profileDTO.getLastName());
-
             // If user is allowed to change email (not read-only):
             // userEntity.setEmail(profileDTO.getEmail());
 
@@ -120,17 +121,23 @@ public class UserServiceImpl implements UserService {
 
                 // Optional: check oldPassword to confirm identity
                 if (!passwordEncoder.matches(profileDTO.getOldPassword(), userEntity.getPassword())) {
-                    throw new IllegalArgumentException("{profile.oldPassword.mismatch}");
+                    String errorMessage = messageSource.getMessage("profile.oldPassword.mismatch", null, LocaleContextHolder.getLocale());
+                    throw new IllegalArgumentException(errorMessage);
                 }
 
                 // Check that newPassword = confirmNewPassword manually or via custom validator
                 if (!profileDTO.getNewPassword().equals(profileDTO.getConfirmNewPassword())) {
-                    throw new IllegalArgumentException("{profile.passwords.notMatching}");
+                    String errorMessage = messageSource.getMessage("profile.passwords.notMatching", null, LocaleContextHolder.getLocale());
+                    throw new IllegalArgumentException(errorMessage);
                 }
 
                 // Encrypt and set the new password
                 userEntity.setPassword(passwordEncoder.encode(profileDTO.getNewPassword()));
             }
+
+            // Update basic fields
+            userEntity.setFirstName(profileDTO.getFirstName());
+            userEntity.setLastName(profileDTO.getLastName());
 
             userRepository.save(userEntity);
         });

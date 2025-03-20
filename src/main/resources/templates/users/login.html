@@ -15,7 +15,7 @@
     <div th:if="${logoutMessage}" class="info full-width">
         <p th:text="#{login.logout}">Successfully logged out</p>
     </div>
-    <div th:if="${param.updateSuccess}" class="success">
+    <div th:if="${param.updateSuccess}" class="info success">
         <p th:text="#{profile.updateSuccess}">Your profile has been updated. Please log in again.</p>
     </div>
     <form th:action="@{/users/login}" method="post" class="form">
